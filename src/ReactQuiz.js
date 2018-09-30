@@ -2,12 +2,48 @@ import React, { Component } from 'react';
 import './index.css';
 import './bootstrap.min.css';
 
-class ReactQuiz extends Component {
-  render() {
+function Hero() {
+  return (<div className="row">
+    <div className="jumbotron col-10 offset-1">
+    <h1>React Quiz!</h1>
+    <p>Select the correct answer</p>
+    </div>
+  </div>);
+}
+
+function Turn({author, books}) {
+  return (<div className="row turn" style={{backgroundColor: "white"}}>
+    <div className="col-4 offset-1">
+      <img src={author.imageUrl} className="authorimage" alt="Author"/>
+    </div>
+    <div className="col-6">
+      {books.map((title) => <p>{title}</p>)}
+    </div>
+  </div>);
+}
+
+function Continue() {
+  return (<div/>);
+}
+
+function Footer() {
+  return (<div id="footer" className="row">
+    <div className="col-12">
+      <p className="text-muted credit">Where the images are sourced from</p>
+
+    </div>
+  </div>);
+}
+
+function ReactQuiz({turnData}) {
     return (
-      <div> React Quiz! </div>
+      <div className="container-fluid">
+        <Hero/>
+        <Turn {...turnData} />
+        <Continue />
+        <Footer />
+      </div>
     );
   }
-}
 
 export default ReactQuiz;
