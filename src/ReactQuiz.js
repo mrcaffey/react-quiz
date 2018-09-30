@@ -6,7 +6,7 @@ function Hero() {
   return (<div className="row">
     <div className="jumbotron col-10 offset-1">
     <h1>React Quiz!</h1>
-    <p>Select the correct answer</p>
+    <p>Match the author with their book on the right!</p>
     </div>
   </div>);
 }
@@ -37,7 +37,7 @@ function Continue() {
 function Footer() {
   return (<div id="footer" className="row">
     <div className="col-12">
-      <p className="text-muted credit">Where the images are sourced from</p>
+      <p className="text-muted credit">Created by Micah Caffey</p>
 
     </div>
   </div>);
