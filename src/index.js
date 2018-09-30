@@ -10,7 +10,10 @@ const authors = [
     name: 'David Benioff',
     imageUrl: 'images/authors/davidbenioff.jpeg',
     imageSource: 'Wikipedia',
-    books: ['City of Thieves']
+    books: ['City of Thieves',
+            'The 25th Hour',
+            'When the Nines Roll Over'
+          ]
   }
 ];
 
