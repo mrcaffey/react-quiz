@@ -53,22 +53,34 @@ function getTurnData(authors) {
 }
 
 const state =  {
-  turnData: getTurnData(authors)
+  turnData: getTurnData(authors),
+  highlight: ''
 };
 
 function onAnswerSelected(answer) {
   const isCorrect = state.turnData.author.books.some((book) => books
   state.highlight = isCorrect ? 'correct' : 'wrong';
+  render();
+}
+
+function AddAuthorForm({match}) {
+  return <div>
+    <h1>Add Author</h1>
+    <p>{JSON.stringify(match)}</p>
+    </div>;
 }
 
 function App() {
-ReactDOM.render(<AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
+return AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
 }
 
 function render() {
   ReactDOM.render(
   <BrowserRouter>
-  <Route exact path="/" <App />
+  <React.Fragment>
+  <Route exact path="/" component={App} />
+  <Route path="/add" component={AddAuthorForm} />
+  </React.Fragment>
   </BrowserRouter>, document.getElementById('root'));
 render();
 registerServiceWorker();
