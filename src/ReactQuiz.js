@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'react-router-dom';
 import './App.css';
 import './bootstrap.min.css';
@@ -20,7 +21,7 @@ function Book({title, onClick}) {
 }
 
 
-function Turn({author, books, highlight}) {
+function Turn({author, books, highlight, onAnswerSelected}) {
   function highlightToBgColor(highlight) {
     const mapping = {
       'none': '',
@@ -37,10 +38,22 @@ function Turn({author, books, highlight}) {
       <img src={author.imageUrl} className="authorimage" alt="Author"/>
     </div>
     <div className="col-6">
-      {books.map((title) => <Book title={title} key={title}></Book> )}
+      {books.map((title) => <Book title={title} key={title} onClick={onAnswerSelected}></Book> )}
     </div>
   </div>);
 }
+
+Turn.propTypes = {
+  author: PropTypes.shape({
+    name: PropTypes.shape({
+    imageUrl: PropTypes.string.isRequired,
+    imageSource: PropTypes.string.isRequired,
+    books: PropTypes.arrayOf(PropTypes.string).isRequired
+    }),
+    books: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onAnswerSelected: PropTypes.func.isRequired,
+    highlight: PropTypes.string.isRequired
+  };
 
 function Continue() {
   return (<div/>);
@@ -55,7 +68,7 @@ function Footer() {
   </div>);
 }
 
-function ReactQuiz({turnData, highlight}) {
+function ReactQuiz({turnData, highlight, onAnswerSelected}) {
     return (
       <div className="container-fluid">
         <Hero/>
