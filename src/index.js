@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './index.css';
 import ReactQuiz from './ReactQuiz';
 import registerServiceWorker from './registerServiceWorker';
@@ -55,5 +56,19 @@ const state =  {
   turnData: getTurnData(authors)
 };
 
-ReactDOM.render(<ReactQuiz {...state} />, document.getElementById('root'));
+function onAnswerSelected(answer) {
+  const isCorrect = state.turnData.author.books.some((book) => books
+  state.highlight = isCorrect ? 'correct' : 'wrong';
+}
+
+function App() {
+ReactDOM.render(<AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
+}
+
+function render() {
+  ReactDOM.render(
+  <BrowserRouter>
+  <Route exact path="/" <App />
+  </BrowserRouter>, document.getElementById('root'));
+render();
 registerServiceWorker();
