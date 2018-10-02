@@ -64,15 +64,12 @@ function onAnswerSelected(answer) {
   render();
 }
 
-function AddAuthorForm({match}) {
-  return <div>
-    <h1>Add Author</h1>
-    <p>{JSON.stringify(match)}</p>
-    </div>;
-}
-
 function App() {
 return <ReactQuiz {...state} onAnswerSelected={onAnswerSelected} />;
+}
+
+function AuthorWrapper() {
+  return <AddAuthorForm onAddAuthor={console.log} />;
 }
 
 function render() {
@@ -80,7 +77,7 @@ function render() {
   <BrowserRouter>
   <React.Fragment>
   <Route exact path="/" component={App} />
-  <Route path="/add" component={AddAuthorForm} />
+  <Route path="/add" component={AuthorWrapper} />
   </React.Fragment>
   </BrowserRouter>, document.getElementById('root'));
 }
