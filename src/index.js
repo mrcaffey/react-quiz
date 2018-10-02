@@ -71,7 +71,7 @@ function AddAuthorForm({match}) {
 }
 
 function App() {
-return AuthorQuiz {...state} onAnswerSelected={onAnswerSelected} />;
+return <ReactQuiz {...state} onAnswerSelected={onAnswerSelected} />;
 }
 
 function render() {
@@ -82,5 +82,6 @@ function render() {
   <Route path="/add" component={AddAuthorForm} />
   </React.Fragment>
   </BrowserRouter>, document.getElementById('root'));
+}
 render();
 registerServiceWorker();
