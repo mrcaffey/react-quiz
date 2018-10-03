@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, withRouter } from 'react-router-dom';
+import * as Redux from 'redux';
+import * as ReactRedux from 'react-redux';
 import './index.css';
 import ReactQuiz from './ReactQuiz';
 import AddAuthorForm from './AddAuthorForm';
@@ -60,7 +62,12 @@ function resetState() {
   };
 }
 
-let state =  resetState();
+function reducer(state, action) {
+  return state;
+}
+
+let store = Redux.createStore(reducer);
+let state = resetState();
 
 function onAnswerSelected(answer) {
   const isCorrect = state.turnData.author.books.some((book) => book === answer);
@@ -69,12 +76,14 @@ function onAnswerSelected(answer) {
 }
 
 function App() {
-return <ReactQuiz {...state} 
+return <ReactRedux.Provider store={store}>
+<ReactQuiz {...state} 
 onAnswerSelected={onAnswerSelected} 
 onContinue={() => {
   state = resetState();
   render();
 }}/>;
+</ReactRedux.Provider>;
 }
 
 const AuthorWrapper = withRouter(({ history}) =>
