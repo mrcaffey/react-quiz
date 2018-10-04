@@ -72,18 +72,17 @@ action) {
         state, {
            highlight: isCorrect ? 'correct' : 'wrong'
           });
+        case 'CONTINUE' :
+          return Object.assign({}, state, {
+            highlight: '',
+            turnData: getTurnData(state.authors)
+          });
+      default: return state;
   }
   return state;
 }
 
 let store = Redux.createStore(reducer);
-let state = resetState();
-
-function onAnswerSelected(answer) {
-  const isCorrect = state.turnData.author.books.some((book) => book === answer);
-  state.highlight = isCorrect ? 'correct' : 'wrong';
-  render();
-}
 
 function App() {
 return <ReactRedux.Provider store={store}>
@@ -98,7 +97,6 @@ const AuthorWrapper = withRouter(({ history}) =>
   }}/>
 );
 
-function render() {
   ReactDOM.render(
   <BrowserRouter>
   <React.Fragment>
