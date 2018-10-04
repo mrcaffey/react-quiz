@@ -62,7 +62,17 @@ function resetState() {
   };
 }
 
-function reducer(state, action) {
+function reducer(state = { authors, turnData: getTurnData(authors), highlight: ''},
+action) {
+  switch (action.type) {
+    case 'ANSWER_SELECTED'
+      const isCorrect = state.turnData.author.books.some((book) => book === action;
+      return Object.assign(
+        {}, 
+        state, {
+           highlight: isCorrect ? 'correct' : 'wrong'
+          });
+  }
   return state;
 }
 
@@ -77,12 +87,7 @@ function onAnswerSelected(answer) {
 
 function App() {
 return <ReactRedux.Provider store={store}>
-<ReactQuiz {...state} 
-onAnswerSelected={onAnswerSelected} 
-onContinue={() => {
-  state = resetState();
-  render();
-}}/>;
+<ReactQuiz/>
 </ReactRedux.Provider>;
 }
 
